@@ -1,0 +1,26 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.4)
+
+2025-11-27T01:10:22.422-05:00  INFO 41760 --- [           main] idm.auth.AuthServiceApplication          : Starting AuthServiceApplication using Java 17.0.17 with PID 41760 (D:\GitHub_Src\Interview\identity_management_platform\auth-service\target\auth-service-0.1.0.jar started by kenng in D:\GitHub_Src\Interview\identity_management_platform\scim-service)
+2025-11-27T01:10:22.428-05:00  INFO 41760 --- [           main] idm.auth.AuthServiceApplication          : No active profile set, falling back to 1 default profile: "default"
+2025-11-27T01:10:24.032-05:00  INFO 41760 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-27T01:10:24.053-05:00  INFO 41760 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-27T01:10:24.095-05:00  INFO 41760 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+2025-11-27T01:10:24.669-05:00  INFO 41760 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-27T01:10:24.693-05:00  INFO 41760 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-27T01:10:24.693-05:00  INFO 41760 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-11-27T01:10:24.740-05:00  INFO 41760 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-27T01:10:24.742-05:00  INFO 41760 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2226 ms
+2025-11-27T01:10:26.276-05:00  INFO 41760 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-27T01:10:27.250-05:00  INFO 41760 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-11-27T01:10:27.269-05:00  INFO 41760 --- [           main] idm.auth.AuthServiceApplication          : Started AuthServiceApplication in 5.477 seconds (process running for 6.106)
+2025-11-27T01:10:33.519-05:00  INFO 41760 --- [nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-27T01:10:33.523-05:00  INFO 41760 --- [nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-27T01:10:33.524-05:00  INFO 41760 --- [nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
