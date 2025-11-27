@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "test": "cross-env NODE_ENV=test DISABLE_SIGNATURE_VERIFY=true jest --runInBand"
+    "test": "cross-env NODE_ENV=test DISABLE_SIGNATURE_VERIFY=true node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand"
   },
   "dependencies": {
     "express": "^4.19.2",
@@ -21,7 +21,6 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "extensionsToTreatAsEsm": [".js"],
     "moduleFileExtensions": ["js", "json"],
     "roots": ["<rootDir>/src"]
   }
