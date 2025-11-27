@@ -187,6 +187,54 @@ Location: `identity_management_platform/docker-compose.yml`
 5. Gateway routes to scim-service; scim-service also verifies signature and scope, then calls gRPC user-service.
 6. user-service returns results to scim-service, which maps to SCIM and returns to client via gateway.
 
+### Sequence Diagram
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Client
+  participant G as Gateway (Envoy)
+  participant A as Auth Service
+  participant R as Redis
+  participant S as SCIM Service
+  participant U as User Service (gRPC)
+
+  rect rgb(245,245,245)
+  Note over C,G: Token issuance
+  C->>G: POST /oauth/token (demo creds)
+  G->>A: Forward /oauth/token
+  A->>R: Store refresh token (TTL)
+  R-->>A: OK
+  A-->>G: 200 {access_token, refresh_token}
+  G-->>C: 200 {access_token, refresh_token}
+  end
+
+  rect rgb(245,245,245)
+  Note over C,G: SCIM list with JWT
+  C->>G: GET /scim/v2/Users (Authorization: Bearer <token>)
+  alt Envoy jwt_authn needs JWKS or refresh
+    G->>A: GET /oauth/jwks (remote_jwks)
+    A-->>G: 200 JWKS
+  end
+  Note over G: Validate RS256 signature; extract claims to metadata
+  Note over G: RBAC checks scope (scim.read for GET)
+  G->>S: Forward /scim/v2/Users
+  end
+
+  rect rgb(245,245,245)
+  Note over S: Defense-in-depth verification
+  alt SCIM needs JWKS (startup/rotation retry)
+    S->>A: GET /oauth/jwks
+    A-->>S: 200 JWKS
+  end
+  Note over S: Verify RS256 signature; check scope contains scim.read
+  S->>U: gRPC ListUsers()
+  U-->>S: Users list
+  S-->>G: 200 { Resources[], totalResults }
+  G-->>C: 200 { Resources[], totalResults }
+  end
+```
+
 ---
 
 ## Security Considerations
