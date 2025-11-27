@@ -138,6 +138,16 @@ $TOKEN="<access_token>"
 curl -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"userName":"alice","name":{"givenName":"Alice","familyName":"Doe"},"emails":[{"value":"alice@example.com"}]}' http://localhost:8080/scim/v2/Users
 ```
 
+Windows PowerShell (end-to-end with write scope):
+```powershell
+# Request a token that includes scim.write (required for POST/PUT/PATCH/DELETE)
+$token = (Invoke-RestMethod -Method Post -Uri 'http://localhost:8080/oauth/token' -ContentType 'application/x-www-form-urlencoded' -Body 'grant_type=password&username=demo&password=demo&scope=scim.read scim.write').access_token
+
+# Create a user
+$body = '{"userName":"alice","name":{"givenName":"Alice","familyName":"Doe"}}'
+Invoke-RestMethod -Method Post -Uri 'http://localhost:8080/scim/v2/Users' -Headers @{ Authorization = "Bearer $token"; 'Content-Type' = 'application/json' } -Body $body | ConvertTo-Json -Depth 4
+```
+
 ### SCIM via Gateway Examples
 
 Windows PowerShell:
@@ -307,6 +317,9 @@ envoy -c ./envoy.yaml --log-level info
 - 401 invalid signature: Ensure auth-service restarted (key rotation resets public key) and scim-service fetched latest JWK (restart scim-service).
 - 401 token_expired: Request new access via refresh flow.
 - 403 insufficient_scope: Token lacks required scope; reissue with correct scopes.
+- `docker compose up build` fails: Use `docker compose up --build` (note the leading dashes).
+- PowerShell token body missing: Either define `$body = @{ grant_type='password'; username='demo'; password='demo' }` and pass `-Body $body`, or pass a string body directly: `-Body 'grant_type=password&username=demo&password=demo'`.
+- 403 on SCIM create with read-only token: Include `scope=scim.write` (or `scope=scim.read scim.write`) when requesting the token.
 - RBAC: access denied on /oauth/token via gateway: Ensure Envoy RBAC explicitly allows unauthenticated access to `/oauth/*` and restart gateway (`docker compose restart gateway`).
 - Jwt issuer is not configured on /scim/*: Ensure tokens include `"iss":"auth-service"` and Envoy's jwt_authn provider expects the same issuer; rebuild/restart auth-service if recently changed.
 - Redis connection errors: Check container health (`docker compose ps`).
