@@ -307,6 +307,8 @@ envoy -c ./envoy.yaml --log-level info
 - 401 invalid signature: Ensure auth-service restarted (key rotation resets public key) and scim-service fetched latest JWK (restart scim-service).
 - 401 token_expired: Request new access via refresh flow.
 - 403 insufficient_scope: Token lacks required scope; reissue with correct scopes.
+- RBAC: access denied on /oauth/token via gateway: Ensure Envoy RBAC explicitly allows unauthenticated access to `/oauth/*` and restart gateway (`docker compose restart gateway`).
+- Jwt issuer is not configured on /scim/*: Ensure tokens include `"iss":"auth-service"` and Envoy's jwt_authn provider expects the same issuer; rebuild/restart auth-service if recently changed.
 - Redis connection errors: Check container health (`docker compose ps`).
 - gRPC errors (user not found): Ensure correct user ID; consistent after creation response.
 - Envoy route mismatch: Confirm `envoy.yaml` has prefixes `/scim/`, `/oauth/`.
