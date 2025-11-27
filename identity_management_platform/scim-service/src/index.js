@@ -18,7 +18,9 @@ const targetHost = process.env.GRPC_USER_HOST || 'user-service';
 const targetPort = process.env.GRPC_USER_PORT || '8083';
 // Use explicit dns:/// scheme to ensure proper name resolution in containers
 const grpcTarget = `dns:///` + `${targetHost}:${targetPort}`;
-const client = new userPkg.UserService(grpcTarget, grpc.credentials.createInsecure());
+let client = new userPkg.UserService(grpcTarget, grpc.credentials.createInsecure());
+
+export function setClient(mock){ client = mock; }
 
 // Fetch JWKs from auth-service for RS256 verification
 let publicKey; // cached KeyObject
@@ -43,8 +45,10 @@ async function fetchJwk(){
 }
 
 // (manual PEM conversion removed; using Node's JWK import)
-
-await fetchJwk().catch(err=> console.error('Failed to fetch JWK', err));
+// Only prefetch JWKS when verification is enabled
+if(!DISABLE_VERIFY){
+  await fetchJwk().catch(err=> console.error('Failed to fetch JWK', err));
+}
 
 // JWT scope check with lazy JWKS fetch
 function authorize(requiredScope){
@@ -139,5 +143,9 @@ function toScim(u){
   };
 }
 
+export { app };
+
 const port = process.env.PORT || 8082;
-app.listen(port, ()=> console.log('SCIM service listening on '+port));
+if(process.env.NODE_ENV !== 'test' && !process.env.JEST_WORKER_ID){
+  app.listen(port, ()=> console.log('SCIM service listening on '+port));
+}
