@@ -9,3 +9,7 @@ target/
 
 # Java archives
 *.jar
+# Maven specific
+*.war
+auth-service/target/maven-status/
+identity_management_platform/auth-service/target
