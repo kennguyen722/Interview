@@ -91,6 +91,16 @@ Services exposed:
 - Auth Service (direct dev): http://localhost:8081
 - SCIM Service (direct dev): http://localhost:8082
 
+### Quick PowerShell (Windows) — Token + List
+```powershell
+# Get access token via gateway
+$body = @{ grant_type='password'; username='demo'; password='demo' }
+$token = (Invoke-RestMethod -Method Post -Uri 'http://localhost:8080/oauth/token' -ContentType 'application/x-www-form-urlencoded' -Body $body).access_token
+
+# List users via gateway
+Invoke-RestMethod -Method Get -Uri 'http://localhost:8080/scim/v2/Users' -Headers @{ Authorization = "Bearer $token" } | ConvertTo-Json -Depth 3
+```
+
 ### Obtain Token (Password Grant Demo)
 
 Windows PowerShell:
