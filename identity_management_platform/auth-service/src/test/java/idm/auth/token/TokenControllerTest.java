@@ -39,11 +39,12 @@ class TokenControllerTest {
 
     ResponseEntity<Map> resp = rest.postForEntity(url("/oauth/token"), new HttpEntity<>(body, headers), Map.class);
     assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
-    Map<?,?> payload = resp.getBody();
+    Map<String,Object> payload = resp.getBody();
     assertThat(payload).isNotNull();
-    assertThat(payload).containsKeys("access_token", "refresh_token", "token_type", "expires_in", "scope");
+    assertThat(payload.keySet()).contains("access_token", "refresh_token", "token_type", "expires_in", "scope");
     assertThat(payload.get("token_type")).isEqualTo("Bearer");
-    assertThat((Integer)payload.get("expires_in")).isEqualTo(300);
+    Number exp = (Number) payload.get("expires_in");
+    assertThat(exp.intValue()).isEqualTo(300);
 
     // Basic JWT shape check
     String jwt = (String) payload.get("access_token");
@@ -57,7 +58,7 @@ class TokenControllerTest {
   void shouldPublishJwks() {
     ResponseEntity<Map> resp = rest.getForEntity(url("/oauth/jwks"), Map.class);
     assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
-    Map<?,?> jwks = resp.getBody();
+    Map<String,Object> jwks = resp.getBody();
     assertThat(jwks).isNotNull();
     var keys = (java.util.List<Map<String,Object>>) jwks.get("keys");
     assertThat(keys).isNotEmpty();
@@ -73,7 +74,7 @@ class TokenControllerTest {
     body.add("grant_type", "password");
     body.add("username", "demo");
     body.add("password", "demo");
-    Map tokenResp = rest.postForObject(url("/oauth/token"), new HttpEntity<>(body, headers), Map.class);
+    Map<String,Object> tokenResp = rest.postForObject(url("/oauth/token"), new HttpEntity<>(body, headers), Map.class);
     String refresh = (String) tokenResp.get("refresh_token");
 
     // exchange refresh
@@ -81,6 +82,6 @@ class TokenControllerTest {
     body2.add("refresh_token", refresh);
     ResponseEntity<Map> resp = rest.postForEntity(url("/oauth/refresh"), new HttpEntity<>(body2, headers), Map.class);
     assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(resp.getBody()).containsKeys("access_token", "refresh_token");
+    assertThat(((Map<String,Object>)resp.getBody()).keySet()).contains("access_token", "refresh_token");
   }
 }
