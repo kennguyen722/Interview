@@ -1,0 +1,40 @@
+name: Protect Branch
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to protect (defaults to ref_name)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  protect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure PowerShell is available
+        run: pwsh -v
+
+      - name: Apply branch protection
+        shell: pwsh
+        env:
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+          BRANCH: ${{ github.event.inputs.branch != '' && github.event.inputs.branch || github.ref_name }}
+          TOKEN: ${{ secrets.PROTECT_TOKEN }}
+        run: |
+          if (-not $env:TOKEN) {
+            Write-Error "Missing PROTECT_TOKEN secret. Create repository secret PROTECT_TOKEN with repo admin scopes."
+            exit 1
+          }
+          ./scripts/protect-branch.ps1 -Owner $env:OWNER -Repo $env:REPO -Branch $env:BRANCH -Token $env:TOKEN
