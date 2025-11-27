@@ -90,7 +90,7 @@ public class TokenController {
     try {
       long now = System.currentTimeMillis()/1000;
       String headerJson = "{\"alg\":\"RS256\",\"typ\":\"JWT\",\"kid\":\"primary\"}";
-      String payloadJson = String.format("{\"sub\":\"%s\",\"scope\":\"scim.read scim.write\",\"iat\":%d,\"exp\":%d}", sub, now, now+expSeconds);
+      String payloadJson = String.format("{\"iss\":\"auth-service\",\"sub\":\"%s\",\"scope\":\"scim.read scim.write\",\"iat\":%d,\"exp\":%d}", sub, now, now+expSeconds);
       String header = b64(headerJson.getBytes(StandardCharsets.UTF_8));
       String payload = b64(payloadJson.getBytes(StandardCharsets.UTF_8));
       String signingInput = header+"."+payload;
