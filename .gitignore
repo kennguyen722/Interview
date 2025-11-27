@@ -1,0 +1,11 @@
+# Node dependencies
+node_modules/
+
+# Java build outputs
+target/
+
+# Logs
+*.log
+
+# Java archives
+*.jar
