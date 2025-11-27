@@ -2,6 +2,9 @@
 
 Cloud-native identity platform implementing OAuth2, RS256-signed JWT + refresh tokens (Redis), SCIM 2.0 provisioning, gRPC microservices behind Envoy, and Redis caching.
 
+For a detailed, code-level walkthrough of each service, see:
+- docs/SERVICE_DEEP_DIVE.md
+
 ## Architecture
 Services:
 - Gateway (Envoy): Unified entrypoint, routes REST (SCIM) & gRPC, JWT auth.
