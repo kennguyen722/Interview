@@ -32,7 +32,7 @@ Location: `identity_management_platform/auth-service`
   - Mounts under `/oauth/*` and implements two POST endpoints:
     - `/oauth/token` (password grant demo):
       - Validates `grant_type=password` and the demo credentials `demo/demo`.
-      - Builds a JWT with header `{ alg: RS256, typ: JWT, kid: "primary" }` and payload including `sub`, `scope`, `iat`, and `exp`.
+      - Builds a JWT with header `{ alg: RS256, typ: JWT, kid: "primary" }` and payload including `iss`, `sub`, `scope`, `iat`, and `exp`.
       - Signs with `Signature(SHA256withRSA)` using the private key from `KeyPair`.
       - Creates and stores a refresh token in Redis (TTL: 1h). If Redis fails, falls back to an in-memory map with expiration.
       - Response: `{ access_token, token_type: "Bearer", expires_in: 300, refresh_token, scope }`.
@@ -155,6 +155,10 @@ Location: `identity_management_platform/envoy.yaml`
     - `POST|PUT|PATCH|DELETE /scim/*` requires `scope` containing `scim.write`.
 - `envoy.filters.http.router`: Standard router.
 
+Issuer requirement:
+- The `jwt_authn` provider expects the token issuer to be `auth-service` (set in the token's `iss` claim).
+- If you change the issuer in tokens, also update the Envoy provider issuer accordingly.
+
 ### Clusters
 - `auth_service` (LOGICAL_DNS) → `auth-service:8081`
 - `scim_service` (LOGICAL_DNS) → `scim-service:8082`
@@ -242,6 +246,12 @@ sequenceDiagram
 - Ephemeral keys; replace with managed keys (e.g., KMS/HSM/Vault) for stability and rotation.
 - Add rate limiting and anomaly detection at the gateway.
 - Prefer mTLS between internal services in production.
+
+Common errors and fixes:
+- `RBAC: access denied` when calling `/oauth/token` via gateway:
+  - Ensure RBAC explicitly allows unauthenticated access to `/oauth/*` and restart the gateway: `docker compose restart gateway`.
+- `Jwt issuer is not configured` when calling `/scim/*`:
+  - Ensure issued JWTs include `"iss":"auth-service"` and that Envoy’s jwt_authn provider expects the same issuer.
 
 ---
 
