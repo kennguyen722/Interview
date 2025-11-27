@@ -1,0 +1,1 @@
+import java.util.*;public class CollectionsOverview { public static void main(String[] a){ List<Integer> list=Arrays.asList(1,2); Set<Integer> set=new HashSet<>(list); System.out.println(list.size()+":"+set.size()); }}

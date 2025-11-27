@@ -1,0 +1,1 @@
+import java.nio.file.*;public class IoDemo { public static void main(String[] a) throws Exception { Path p=Files.createTempFile("demo","txt"); Files.writeString(p,"data"); System.out.println(Files.readString(p)); }}
