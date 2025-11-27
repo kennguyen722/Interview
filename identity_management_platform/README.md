@@ -326,6 +326,16 @@ envoy -c ./envoy.yaml --log-level info
     ```
   - Ensure scopes include `scim.read` for GET and `scim.write` for POST/PUT/PATCH/DELETE (reissue token if needed).
 
+### Quick restarts (Docker)
+```powershell
+cd identity_management_platform
+# Reload gateway config (e.g., RBAC/JWT changes)
+docker compose restart gateway
+# Rebuild and restart auth-service (e.g., JWT claim changes)
+docker compose build auth-service
+docker compose up -d auth-service
+```
+
 ## Verification Checklist
 - [ ] `docker compose up` starts all containers without errors.
 - [ ] Obtain token returns 200 and header shows `"alg":"RS256"`.

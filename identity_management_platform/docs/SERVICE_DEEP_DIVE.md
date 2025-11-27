@@ -183,6 +183,18 @@ Location: `identity_management_platform/docker-compose.yml`
 
 ---
 
+### Quick Restarts (Docker)
+```powershell
+cd identity_management_platform
+# Pick up Envoy config edits (routes/RBAC/jwt_authn)
+docker compose restart gateway
+# Pick up auth-service code/config edits (e.g., JWT issuer)
+docker compose build auth-service
+docker compose up -d auth-service
+```
+
+---
+
 ## End-to-End Flow
 1. Client requests token from gateway: `POST /oauth/token` with demo creds.
 2. Gateway routes to auth-service, which issues an RS256 JWT and a refresh token.
