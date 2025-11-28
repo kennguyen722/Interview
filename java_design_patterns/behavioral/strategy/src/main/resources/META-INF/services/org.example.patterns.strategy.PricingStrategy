@@ -1,0 +1,3 @@
+org.example.patterns.strategy.SeasonalPricingStrategy
+org.example.patterns.strategy.VolumePricingStrategy
+org.example.patterns.strategy.PromotionalPricingStrategy
