@@ -46,6 +46,12 @@ static_resources:
                       rules:
                         action: ALLOW
                         policies:
+                          oauth_open_policy:
+                            permissions:
+                              - url_path:
+                                  path: { prefix: "/oauth/" }
+                            principals:
+                              - any: true
                           scim_read_policy:
                             permissions:
                               - and_rules:
