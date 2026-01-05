@@ -90,6 +90,188 @@ Each lesson folder contains:
 - **Examples**: Migration workflow, type safety improvements
 - **Exercise**: Migrate JS module, replace any types, answer interview questions
 
+---
+
+## Advanced Lessons (12-16)
+
+### 12. Advanced Generics & Type Manipulation
+- Variance (covariance, contravariance, invariance)
+- Higher-kinded types and builder patterns
+- Recursive types: DeepReadonly, PathOf
+- Variadic tuple types and template literals
+- Advanced infer patterns for type extraction
+- **Examples**: TypeSafeBuilder, Curry function, pipe utilities, QueryBuilder
+- **Exercise**: Compose functions, DeepFlatten, TemplateLiteralParser, TypeSafeEventEmitter
+
+### 13. Design Patterns in TypeScript
+- Creational: Factory, Builder, Singleton with type safety
+- Structural: Adapter, Decorator, Proxy patterns
+- Behavioral: Strategy, Observer, Command with undo/redo
+- Functional: Maybe/Either monads for error handling
+- **Examples**: ShapeFactory, DatabaseConnection singleton, Coffee decorator chain, TypedEventBus, CommandInvoker
+- **Exercise**: Plugin system, Memento pattern, Chain of Responsibility, Either monad
+
+### 14. Type-Level Programming
+- Type-level arithmetic (increment/decrement using tuple length)
+- String manipulation at type level (path parsing, case conversion)
+- Recursive type construction and deep traversal
+- Parser combinators with type inference
+- Advanced infer patterns and pattern matching
+- Type-safe state machines with compile-time validation
+- **Examples**: Inc/Dec types, Split paths, Get/Set by path, ExtractRouteParams, TrafficLight state machine, DeepPartial
+- **Exercise**: Range type, DeepReadonly, Join type, PathOf, TypedEventEmitter, Curry type, FizzBuzz, Pipe type
+
+### 15. Domain-Driven Design & Hexagonal Architecture
+- DDD building blocks: Value Objects, Entities, Aggregates
+- Branded types for value objects with validation
+- Domain events and event-driven architecture
+- Ports & Adapters (Hexagonal Architecture)
+- Repository pattern and dependency injection
+- Anti-corruption layers for legacy integration
+- **Examples**: E-commerce domain (Order aggregate, Money value object, Payment entity), Event bus, Use cases
+- **Exercise**: User management context, Inventory with SKU, Payment processing, Notification adapters, Event handlers
+
+### 16. Performance Optimization & Production Patterns
+- Compiler optimization (incremental builds, project references)
+- Bundle size optimization (tree shaking, code splitting)
+- Runtime performance (memoization, lazy evaluation, object pooling)
+- Memory management (WeakMap, cache expiration, cleanup)
+- Production patterns (structured logging, health checks, graceful shutdown)
+- Rate limiting, circuit breakers, request deduplication
+- **Examples**: Memoize function, LRU cache, ExpiringCache, ObjectPool, Logger, HealthChecker, Application shutdown
+- **Exercise**: LRU cache, Fibonacci memoization, Rate limiter, Batch processor, Circuit breaker, Performance monitor, Retry with backoff, Event stream processor
+
+---
+
+## Expert Lessons (17-21)
+
+### 17. TypeScript Compiler Internals & AST Manipulation
+- TypeScript Compiler API and program structure
+- Abstract Syntax Tree (AST) traversal and manipulation
+- Custom transformers and code generation
+- Static analysis tools and linters
+- Type checker API usage
+- Building developer tools (code generators, analyzers, documentation tools)
+- **Examples**: AST explorer, function counter, import extractor, complexity calculator, performance profiler injector
+- **Exercise**: Class property extractor, decorator analyzer, dependency graph, React props extractor, type guard generator, barrel file generator
+
+### 18. Advanced Testing Patterns & Strategies
+- Property-based testing with fast-check
+- Contract testing for microservices (Pact)
+- Snapshot testing best practices
+- Test doubles: Mocks, Stubs, Spies, Fakes
+- Mutation testing with Stryker
+- Integration testing strategies
+- Time and async testing patterns
+- **Examples**: Property tests for arrays/strings, contract test patterns, snapshot normalization, test double implementations, debounce testing
+- **Exercise**: Sort algorithm property tests, API gateway contracts, component snapshots, type-safe mocks, mutation coverage improvement
+
+### 19. Security & Type Safety
+- Input validation and sanitization with branded types
+- SQL injection prevention through parameterized queries
+- XSS (Cross-Site Scripting) prevention
+- Type-safe authentication (JWT, sessions)
+- Role-based access control (RBAC) with types
+- Cryptography and secret management
+- API security: rate limiting, CORS, request validation
+- OWASP Top 10 coverage with TypeScript patterns
+- **Examples**: Validated input types, SQL-safe query builders, XSS-safe rendering, JWT auth, RBAC systems, secret managers
+- **Exercise**: Form validation, SQL query builder, safe HTML templating, auth system, permission management, rate limiter, CORS middleware
+
+### 20. Distributed Systems & Microservices Patterns
+- Event Sourcing: event store, aggregate reconstruction, snapshotting
+- CQRS (Command Query Responsibility Segregation)
+- Saga Pattern: orchestration vs choreography, compensating transactions
+- Message queues: RabbitMQ/Kafka integration, type-safe contracts
+- Service mesh: circuit breakers, retries, bulkheads
+- Distributed tracing and observability
+- Eventual consistency and conflict resolution
+- **Examples**: Event sourcing implementation, CQRS architecture, saga state machine, message queue integration, resilience patterns
+- **Exercise**: Order saga workflow, event store design, command/query handlers, distributed transaction coordinator, circuit breaker with metrics
+
+### 21. Real-Time Applications & WebSocket Patterns
+- Type-safe WebSocket client/server communication
+- Server-Sent Events (SSE) for one-way push
+- Real-time data synchronization (Operational Transformation, CRDTs)
+- WebRTC for peer-to-peer connections
+- Pub/Sub patterns with Redis/Socket.IO
+- Connection lifecycle management and reconnection strategies
+- Scaling real-time systems (sticky sessions, state sync)
+- **Examples**: Type-safe WebSocket protocol, connection manager, SSE streams, collaborative editing, presence detection
+- **Exercise**: Chat application, real-time dashboard, collaborative document editor, video call signaling, presence system, horizontal scaling
+
+---
+
+## OOP & Design Patterns Mastery (22-26)
+
+### 22. Advanced OOP & SOLID Principles
+- Single Responsibility Principle (SRP): One reason to change
+- Open/Closed Principle (OCP): Open for extension, closed for modification
+- Liskov Substitution Principle (LSP): Substitutability without breaking correctness
+- Interface Segregation Principle (ISP): Many specific interfaces over one general
+- Dependency Inversion Principle (DIP): Depend on abstractions, not concretions
+- Composition over Inheritance patterns
+- Abstract classes vs interfaces in TypeScript
+- Template Method pattern for algorithm skeletons
+- Design by Contract principles
+- **Examples**: SRP refactoring, OCP with plugin architecture, LSP with bird hierarchy, ISP with segregated interfaces, DIP with dependency injection, Composition patterns, Template Method implementation
+- **Exercise**: User/Repository/EmailService separation, Shape hierarchy extension, Bird substitutability, Worker interfaces, OrderService with abstractions, Vehicle composition, DataProcessor template, Rich domain model, Stack with contracts, Strategy with DIP
+
+### 23. Creational Design Patterns - Deep Dive
+- Factory Method: Define interface for creating objects
+- Abstract Factory: Create families of related objects
+- Builder: Construct complex objects step by step with fluent interface
+- Prototype: Clone objects without coupling to concrete classes
+- Singleton: Ensure class has only one instance with global access point
+- Type-safe factories with generics
+- Fluent builders with method chaining
+- Deep cloning strategies
+- Thread-safe singletons (async-safe in TypeScript)
+- **Examples**: Document factory (PDF, Word, Text), UI factory (Windows, Mac), HTTP request builder, User prototype registry, Configuration singleton
+- **Exercise**: Logger factory, Cross-platform UI library, SQL query builder, Game character cloning, Application configuration, Plugin system, Data serializer factory, Theme system, Form builder, Template manager
+
+### 24. Structural Design Patterns - Deep Dive
+- Adapter: Convert incompatible interfaces
+- Bridge: Decouple abstraction from implementation
+- Composite: Compose objects into tree structures
+- Decorator: Attach additional responsibilities dynamically
+- Facade: Provide unified interface to complex subsystem
+- Flyweight: Share common state to support large numbers of objects
+- Proxy: Control access with surrogates (Virtual, Protection, Caching proxies)
+- **Examples**: Payment gateway adapter, Notification bridge (Email/SMS/Push), File system composite, Coffee decorator chain, Video converter facade, Tree flyweight for games, Image proxy (lazy loading, caching, access control)
+- **Exercise**: Multiple payment gateways, Multi-platform rendering, Organization hierarchy, Text formatting pipeline, E-commerce checkout facade, Particle system, Image gallery with proxies, UI framework, Notification system, Cloud storage manager
+
+### 25. Behavioral Design Patterns - Deep Dive
+- Strategy: Encapsulate interchangeable algorithms
+- Observer: One-to-many dependency for state changes
+- Command: Encapsulate requests as objects with undo/redo
+- Chain of Responsibility: Pass requests along handler chain
+- State: Alter behavior when internal state changes
+- Template Method: Define algorithm skeleton with varying steps
+- Memento: Capture and restore object state
+- Iterator: Access elements sequentially without exposing representation
+- Mediator: Centralize complex communications
+- Visitor: Add operations without modifying classes
+- Interpreter: Evaluate language grammar
+- **Examples**: Payment strategy, Weather station observer, Light command with undo, Authentication chain, Vending machine state, Data parser template, Book iterator
+- **Exercise**: Sorting algorithms, Stock market monitoring, Text editor with undo/redo, Request processing pipeline, Vending machine, Chat room mediator, Game save system, Playlist iterators, Data import pipeline, AST visitor, Event sourcing system, Game AI with states
+
+### 26. Architectural Patterns & Clean Architecture
+- Layered Architecture (N-Tier): Presentation, Application, Domain, Infrastructure
+- Clean Architecture (Uncle Bob): Entities, Use Cases, Interface Adapters, Frameworks
+- Hexagonal Architecture (Ports & Adapters): Domain core with pluggable adapters
+- CQRS (Command Query Responsibility Segregation): Separate read and write models
+- Event-Driven Architecture: Loosely coupled event producers and consumers
+- Microservices Patterns: API Gateway, Service Discovery, Circuit Breaker, Saga
+- Module Pattern: Self-contained units with explicit dependencies
+- Onion Architecture: Dependency direction toward domain core
+- Event Sourcing with snapshots and projections
+- Anti-patterns to avoid (Big Ball of Mud, Lasagna Architecture, Anemic Domain Model)
+- **Examples**: Clean architecture with Order domain, Hexagonal user service, CQRS product system, Layered banking app, Modular application bootstrapping
+- **Exercise**: Blog platform with Clean Architecture, E-commerce with Hexagonal, Task management with CQRS, Order processing with events, Banking with layers, Microservices with patterns, Modular monolith CMS, Social media with CQRS, Trading platform with event sourcing, Healthcare with Onion, Multi-architecture system, Monolith-to-microservices migration
+
+---
+
 ## How to Use This Course
 
 1. **For fresh learners**: Start with lesson-01 and progress sequentially.
