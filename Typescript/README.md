@@ -330,6 +330,64 @@ Each lesson folder contains:
 - Testing checklist: before, during, after writing tests
 - **Key Skills**: Test design, coverage analysis, mock usage, TDD application
 
+### 33. Common Coding Interview Problems
+- **String Manipulation**: Reverse words, valid palindrome, longest substring, group anagrams
+- **Array Operations**: Rotate array, two sum, missing number, product except self, maximum subarray, container with water
+- **Linked Lists**: Reverse list, detect cycle, merge sorted lists
+- **Tree Problems**: Max depth, validate BST, lowest common ancestor
+- **Dynamic Programming**: Climbing stairs, house robber, coin change
+- **Matrix Problems**: Rotate 90 degrees, spiral order traversal
+- **Graph Problems**: Number of islands, course schedule (cycle detection)
+- **Advanced Data Structures**: Min stack, LRU cache, Trie implementation
+- **Hard Problems**: Median of two sorted arrays (O(log n)), word ladder (BFS), N-queens (backtracking), trapping rain water, regular expression matching, merge K sorted lists (min heap), longest valid parentheses, wildcard matching, sliding window maximum (deque), edit distance
+- **27 complete working examples** with multiple solution approaches
+- **40 comprehensive exercises** covering easy → medium → hard difficulty progression
+- **All solutions include**: Time complexity, space complexity, multiple approaches, optimization strategies
+- **Key Skills**: Pattern recognition, optimal solutions, complexity analysis, clean implementation
+
+---
+
+## Advanced Functional Programming (34-36)
+
+### 34. Functional Array Methods & Advanced Transformations
+- Typed map operations with type preservation
+- Filter with type guards for type narrowing and discriminated unions
+- Custom comparators for complex sorting (compareBy, thenBy, reverse)
+- Functional pipelines combining filter → map → reduce
+- Immutable array methods (toSorted, toReversed, toSpliced)
+- Performance considerations: single-pass vs multi-pass optimization
+- Lazy evaluation with generators for large datasets
+- **Examples**: Type-safe discount pipeline, user email filtering, comparator factory, functional pipelines, reduce aggregation, flatMap and flattening, type-safe filtering, immutable transformations, performance comparison, lazy evaluation
+- **Exercise**: Product filtering with discounts, user email pipeline, polymorphic comparators, stream aggregation, lazy stream processing, immutable todo list, conditional mapping, nested property sorting
+- **Key Skills**: Type-safe transformations, functional composition, performance optimization, lazy evaluation
+
+### 35. Functional Composition & Monads
+- Function composition basics: pipe vs compose operators (left-to-right vs right-to-left)
+- Higher-order functions: map, filter, reduce returning functions
+- Maybe monad: representing optional values without null
+- Either monad: representing success/failure with error information
+- Result type for validation and error handling
+- Currying and partial application for function specialization
+- Point-free style for cleaner code expression
+- Applicative pattern for combining values in context
+- **Examples**: Pipe and compose operators, Maybe monad, Either monad, currying, higher-order functions, validation with Either, fluent builder pattern, point-free style
+- **Exercise**: Pipe & compose builders, custom Maybe & Either types, validation pipeline, currying utilities, higher-order function library, fluent query builder
+- **Key Skills**: Monadic composition, type-safe error handling, functional pipelines, clean code patterns
+
+### 36. Advanced Error Handling & Railway-Oriented Programming
+- From exceptions to Result types: eliminating hidden error paths
+- Railway-Oriented Programming: keeping happy path clean
+- Combining multiple operations: traverse, sequence, accumulate
+- Async error handling with toResult and safe promise wrapping
+- Error context and enrichment as errors propagate
+- Retry and fallback strategies for resilience
+- Circuit breaker pattern for preventing cascading failures
+- Discriminated union error types for exhaustive handling
+- Error logging and structured observability
+- **Examples**: Result type basics, railway-oriented programming, error context enrichment, async error handling, retry with backoff, error accumulation, discriminated error types, circuit breaker pattern
+- **Exercise**: Result type with full API, validation pipeline with accumulation, async result wrapper, retry logic with exponential backoff, discriminated error union, error context stack
+- **Key Skills**: Railway-oriented design, resilience patterns, type-safe error handling, observable systems
+
 ---
 
 ## How to Use This Course
