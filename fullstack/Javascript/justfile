@@ -1,0 +1,8 @@
+test:
+    node --test "tests/*.test.js"
+
+test_selected:
+    node --test "tests/section-0*.test.js"
+
+run_solutions:
+    node coding/run-coding-solutions.js

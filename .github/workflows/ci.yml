@@ -47,3 +47,7 @@ jobs:
       - name: Test scim-service (Jest)
         working-directory: identity_management_platform/scim-service
         run: npm test --silent
+
+      - name: Test JavaScript problem-bank
+        working-directory: Javascripts
+        run: npm run test:problem-bank --silent

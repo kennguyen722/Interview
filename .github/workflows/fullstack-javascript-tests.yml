@@ -1,0 +1,40 @@
+name: Fullstack JavaScript Tests
+
+on:
+  pull_request:
+    paths:
+      - 'fullstack/Javascript/**'
+      - '.github/workflows/fullstack-javascript-tests.yml'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: fullstack/Javascript
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run coverage
+        run: |
+          mkdir -p coverage/raw
+          set -o pipefail
+          NODE_V8_COVERAGE=coverage/raw npm run test:coverage | tee coverage/coverage-summary.txt
+
+      - name: Upload coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: fullstack-javascript-coverage
+          path: |
+            fullstack/Javascript/coverage/coverage-summary.txt
+            fullstack/Javascript/coverage/raw

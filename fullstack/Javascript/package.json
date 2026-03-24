@@ -1,0 +1,12 @@
+{
+  "name": "fullstack-javascript-interview-package",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Senior/Principal Full Stack JavaScript interview preparation package",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "test:selected": "node --test \"tests/section-0*.test.js\"",
+    "test:coverage": "node --test --experimental-test-coverage \"tests/*.test.js\"",
+    "run:solutions": "node coding/run-coding-solutions.js"
+  }
+}

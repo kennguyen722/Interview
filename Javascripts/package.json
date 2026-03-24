@@ -1,0 +1,22 @@
+{
+  "name": "javascript-interview-mastery",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Starter and solution code for JavaScript interview modules.",
+  "scripts": {
+    "check:solutions": "node phase-1-foundations/module-01-core-runtime/solution/index.js && node phase-1-foundations/module-02-functions-clean-code/solution/index.js && node phase-1-foundations/module-03-data-structures-algorithms/solution/index.js && node phase-1-foundations/module-04-async-event-loop/solution/index.js && node phase-2-professional-coding/module-05-events-ui/solution/index.js && node phase-2-professional-coding/module-06-node-api/solution/index.js && node phase-2-professional-coding/module-08-security-defensive/solution/index.js && node phase-3-architecture-and-scale/module-09-architecture-boundaries/solution/index.js && node phase-3-architecture-and-scale/module-10-scalable-design/solution/index.js && node phase-3-architecture-and-scale/module-11-microservices-events/solution/index.js && node phase-3-architecture-and-scale/module-12-performance-reliability/solution/index.js",
+    "test:module-07-solution": "node --test phase-2-professional-coding/module-07-testing-quality/solution/index.test.js",
+    "check:phase4": "node phase-4-interview-simulations/track-a-frontend-events/coding-round/solution/index.js && node phase-4-interview-simulations/track-b-backend-reliability/coding-round/solution/index.js && node phase-4-interview-simulations/track-c-architecture-microservices/coding-round/solution/index.js",
+    "check:problem-bank": "node problem-bank/solution/index.js",
+    "lint:problem-bank-syntax": "node --check problem-bank/solution/section-a-events-async.solution.js && node --check problem-bank/solution/section-b-api-service.solution.js && node --check problem-bank/solution/section-c-microservices.solution.js && node --check problem-bank/solution/section-d-performance-reliability.solution.js",
+    "test:problem-bank": "node --test problem-bank/tests/section-a.test.js problem-bank/tests/section-b.test.js problem-bank/tests/section-c.test.js problem-bank/tests/section-d.test.js",
+    "check:phase5": "node phase-5-principal-fullstack/module-13-typescript-patterns/solution/index.js && node phase-5-principal-fullstack/module-14-react-architecture/solution/index.js && node phase-5-principal-fullstack/module-15-fullstack-patterns/solution/index.js && node phase-5-principal-fullstack/module-16-database-layer/solution/index.js && node phase-5-principal-fullstack/module-17-auth-identity/solution/index.js && node phase-5-principal-fullstack/module-18-observability/solution/index.js",
+    "check:capstones": "node capstones/capstone-1-notification-platform/solution/index.js && node capstones/capstone-2-order-workflow/solution/index.js && node capstones/capstone-3-reliability-toolkit/solution/index.js",
+    "lint:problem-bank-syntax-fg": "node --check problem-bank/solution/section-f-typescript-advanced.solution.js && node --check problem-bank/solution/section-g-fullstack-patterns.solution.js",
+    "test:problem-bank-fg": "node --test problem-bank/tests/section-f.test.js problem-bank/tests/section-g.test.js",
+    "check:all": "npm run check:solutions && npm run test:module-07-solution && npm run check:phase4 && npm run check:phase5 && npm run check:capstones && npm run check:problem-bank && npm run lint:problem-bank-syntax && npm run lint:problem-bank-syntax-fg && npm run test:problem-bank && npm run test:problem-bank-fg"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
