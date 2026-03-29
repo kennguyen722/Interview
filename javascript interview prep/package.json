@@ -1,0 +1,26 @@
+{
+  "name": "javascript-interview-prep",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Novice to expert JavaScript interview prep with module starter/solution/test packs",
+  "scripts": {
+    "test": "node --test \"modules/**/tests/*.test.js\"",
+    "test:capstones": "node --test \"capstones/**/tests/*.test.js\"",
+    "test:roku-mocks": "node --test \"tracks/roku-live-mocks/solutions/tests/*.test.js\"",
+    "test:roku-attempts": "node --test \"tracks/roku-live-mocks/attempts/tests/*.test.js\"",
+    "test:roku-attempts:easy": "node --test \"tracks/roku-live-mocks/attempts/tests/milestones/easy/*.test.js\"",
+    "test:roku-attempts:medium": "node --test \"tracks/roku-live-mocks/attempts/tests/milestones/medium/*.test.js\"",
+    "test:roku-attempts:hard": "node --test \"tracks/roku-live-mocks/attempts/tests/milestones/hard/*.test.js\"",
+    "test:module2": "node --test \"modules/02-intermediate-core-language/tests/*.test.js\"",
+    "test:module3": "node --test \"modules/03-advanced-async-and-concurrency/tests/*.test.js\"",
+    "mock:run": "node tracks/mock-interview-runner.js",
+    "mock:novice": "node tracks/mock-interview-runner.js --level novice",
+    "mock:intermediate": "node tracks/mock-interview-runner.js --level intermediate",
+    "mock:advanced": "node tracks/mock-interview-runner.js --level advanced",
+    "mock:expert": "node tracks/mock-interview-runner.js --level expert",
+    "mock:roku": "node tracks/mock-interview-runner.js --level roku",
+    "mock:hr:all": "node hackerrank_interview/run-all-mocks.js",
+    "mock:hr:round": "node hackerrank_interview/run-random-mock-round.js",
+    "mock:hr:round:3": "node hackerrank_interview/run-random-mock-round.js --count 3 --minutes 90"
+  }
+}
