@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: module5-data-messaging
+  datasource:
+    url: jdbc:postgresql://localhost:5433/module5
+    username: module5
+    password: module5
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2s
+    mongodb:
+      uri: mongodb://module5:module5@localhost:27017/module5?authSource=admin
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: module5
+    password: module5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+module5:
+  messaging:
+    exchange: order.events
+    queue: order.events.created
+    dlq: order.events.created.dlq
+    routing-key: order.created

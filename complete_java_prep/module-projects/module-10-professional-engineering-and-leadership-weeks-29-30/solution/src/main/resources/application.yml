@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: module10-professional-engineering-leadership
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: module6-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: module6-backend
+  template:
+    metadata:
+      labels:
+        app: module6-backend
+    spec:
+      containers:
+        - name: backend
+          image: module6-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: module6-backend
+spec:
+  selector:
+    app: module6-backend
+  ports:
+    - port: 8080
+      targetPort: 8080

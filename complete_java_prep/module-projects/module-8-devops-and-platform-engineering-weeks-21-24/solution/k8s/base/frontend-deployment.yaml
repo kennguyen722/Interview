@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: module7-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: module7-frontend
+  template:
+    metadata:
+      labels:
+        app: module7-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: module7-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: module7-frontend
+spec:
+  selector:
+    app: module7-frontend
+  ports:
+    - port: 80
+      targetPort: 80

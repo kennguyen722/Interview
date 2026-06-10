@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:16
+    container_name: module6-postgres
+    environment:
+      POSTGRES_DB: module6
+      POSTGRES_USER: module6
+      POSTGRES_PASSWORD: module6
+    ports:
+      - "5434:5432"
+    volumes:
+      - module6_pgdata:/var/lib/postgresql/data
+
+volumes:
+  module6_pgdata:

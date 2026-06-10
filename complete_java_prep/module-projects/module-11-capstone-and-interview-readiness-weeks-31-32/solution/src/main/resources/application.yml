@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: module11-capstone-interview-readiness
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

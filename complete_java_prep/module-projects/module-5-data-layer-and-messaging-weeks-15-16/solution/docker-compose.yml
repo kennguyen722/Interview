@@ -1,0 +1,45 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:16
+    container_name: module5-postgres
+    environment:
+      POSTGRES_DB: module5
+      POSTGRES_USER: module5
+      POSTGRES_PASSWORD: module5
+    ports:
+      - "5433:5432"
+    volumes:
+      - module5_pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: module5-redis
+    ports:
+      - "6379:6379"
+
+  mongo:
+    image: mongo:7
+    container_name: module5-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: module5
+      MONGO_INITDB_ROOT_PASSWORD: module5
+      MONGO_INITDB_DATABASE: module5
+    ports:
+      - "27017:27017"
+    volumes:
+      - module5_mongo:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: module5-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: module5
+      RABBITMQ_DEFAULT_PASS: module5
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  module5_pgdata:
+  module5_mongo:

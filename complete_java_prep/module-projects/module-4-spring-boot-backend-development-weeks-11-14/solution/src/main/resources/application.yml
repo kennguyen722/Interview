@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: module4-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/module4
+    username: module4
+    password: module4
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+
+server:
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.hibernate.SQL: INFO
